@@ -1,0 +1,41 @@
+modules = ["python-3.11"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Quiz Game"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "quiz_game_runner"
+
+[[workflows.workflow]]
+name = "Quiz Game"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python main.py"
+
+[workflows.workflow.metadata]
+outputType = "vnc"
+
+[[workflows.workflow]]
+name = "quiz_game_runner"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python main.py"
